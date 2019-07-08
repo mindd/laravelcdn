@@ -14,7 +14,7 @@ use Publiux\laravelcdn\Contracts\CdnInterface;
  * @author   Raul Ruiz <publiux@gmail.com>
  * @author   Harrie van der Lubbe <harrie@mindd.eu>
  */
-class EmptyCommand extends Command
+class EmptyFolderCommand extends Command
 {
     /**
      * The console command name.
