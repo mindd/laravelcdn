@@ -322,7 +322,7 @@ class AwsS3Provider extends Provider implements ProviderInterface
         }
 
         // user terminal message
-        $this->console->writeln('<fg=yellow>Emptying in progress...</fg=yellow>');
+        $this->console->writeln('<fg=yellow>Emptying ' . (isset($prefix) ? ($prefix . ' ') : '') . 'in progress...</fg=yellow>');
 
         try {
 
@@ -334,7 +334,7 @@ class AwsS3Provider extends Provider implements ProviderInterface
 
             // Check if the bucket is already empty
             if (!$contents['Contents']) {
-                $this->console->writeln('<fg=green>The bucket '.$this->getBucket().' is already empty.</fg=green>');
+                $this->console->writeln('<fg=green>The ' . (isset($prefix) ? ('content with prefix ' . $prefix . ' in the ') : '') . 'bucket '.$this->getBucket().' is already empty.</fg=green>');
 
                 return true;
             }
@@ -351,7 +351,7 @@ class AwsS3Provider extends Provider implements ProviderInterface
             return false;
         }
 
-        $this->console->writeln('<fg=green>The bucket '.$this->getBucket().' is now empty.</fg=green>');
+        $this->console->writeln('<fg=green>The ' . (isset($prefix) ? ('content with prefix ' . $prefix . ' in the ') : '') . 'bucket '.$this->getBucket().' is now empty.</fg=green>');
 
         return true;
     }
