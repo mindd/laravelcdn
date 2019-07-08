@@ -97,4 +97,18 @@ class Cdn implements CdnInterface
 
         return $provider->emptyBucket();
     }
+
+    /**
+     * Will be called from the Publiux\laravelcdn\EmptyCommand class on Fire().
+     */
+    public function emptyFolder($prefix)
+    {
+        // return the configurations from the config file
+        $configurations = $this->helper->getConfigurations();
+
+        // return an instance of the corresponding Provider concrete according to the configuration
+        $provider = $this->provider_factory->create($configurations);
+
+        return $provider->emptyFolder($prefix);
+    }
 }

@@ -107,6 +107,12 @@ class CdnServiceProvider extends ServiceProvider
 
         $this->commands('cdn.empty');
 
+        $this->app->singleton('cdn.emptyfolder', function ($app) {
+            return $app->make('Publiux\laravelcdn\Commands\EmptyFolderCommand');
+        });
+
+        $this->commands('cdn.emptyfolder');
+
         // facade bindings:
         //-----------------
 
