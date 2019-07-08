@@ -311,7 +311,7 @@ class AwsS3Provider extends Provider implements ProviderInterface
      *
      * @return bool
      */
-    public function emptyBucket()
+    public function emptyBucket($prefix = null)
     {
 
         // connect before uploading
@@ -342,7 +342,7 @@ class AwsS3Provider extends Provider implements ProviderInterface
             // Empty out the bucket
             $empty = BatchDelete::fromListObjects($this->s3_client, [
                 'Bucket' => $this->getBucket(),
-                'Prefix' => null,
+                'Prefix' => $prefix,
             ]);
 
             $empty->delete();
@@ -354,6 +354,16 @@ class AwsS3Provider extends Provider implements ProviderInterface
         $this->console->writeln('<fg=green>The bucket '.$this->getBucket().' is now empty.</fg=green>');
 
         return true;
+    }
+
+    /**
+     * Empty 'folder' (all files with 'dashed' prefices).
+     *
+     * @return bool
+     */
+    public function emptyFolder($prefix)
+    {
+        return $this->emptyBucket($prefix);
     }
 
     /**
